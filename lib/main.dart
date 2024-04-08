@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:invoice_app/Screen/SplashScreen.dart';
+import 'package:invoice_app/Screen/add_invoice.dart';
 import 'package:invoice_app/Screen/home_page.dart';
-
 
 void main() {
   runApp(MyApp());
@@ -24,15 +24,7 @@ class _MyAppState extends State<MyApp> {
       routes: {
         "/": (context) => SplashScreen(),
         "home": (context) => Home_Page(),
-        // "contactInfo": (context) => ContactPage(),
-        // "personalDetails": (context) => PersonalDetails(),
-        // "carrierObjective": (context) => CarrierObjective(),
-        // "eduction": (context) => Eduction(),
-        // "experiences": (context) => Experiences(),
-        // "technicalSkill": (context) => TechnicalSkills(),
-        // "achievement": (context) => Achievement(),
-
-
+        "invoice": (context) => AddInvoice(),
       },
       onUnknownRoute: (settings) {
         return MaterialPageRoute(
