@@ -103,7 +103,6 @@ class _Home_PageState extends State<Home_Page> {
             //All invoice show here
             height: 550,
             width: 400,
-            // color: Colors.red,
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
