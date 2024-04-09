@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 
+import '../util.dart';
+
 class AddInvoice extends StatefulWidget {
   const AddInvoice({Key? key}) : super(key: key);
 
@@ -19,7 +21,9 @@ class _AddInvoiceState extends State<AddInvoice> {
   }
 
   Widget build(BuildContext context) {
+// double subtotal = invoicedata.productPrice! * invoicedata.productQuantity!;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         foregroundColor: Color(0xff234f9d),
         title: Text(
@@ -63,10 +67,57 @@ class _AddInvoiceState extends State<AddInvoice> {
               ],
             ),
             Divider(height: 40, thickness: 5),
+      //=================> Get Client info
+            Container(
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Colors.grey.withOpacity(0.5),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Row(
+                    children: [
+                      Icon(Icons.perm_identity_outlined),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "${invoicedata.clientName}",
+                        style: TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Icon(Icons.email_outlined),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "${invoicedata.clientEmail}",
+                        style: TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
             InkWell(
               onTap: () {
                 //popup show
                 _showDetailsPopup(context);
+                setState(() {});
               },
               child: Row(
                 children: [
@@ -90,10 +141,72 @@ class _AddInvoiceState extends State<AddInvoice> {
               ),
             ),
             Divider(height: 40, thickness: 5),
+      //=================> Get product info
+            Container(
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Colors.grey.withOpacity(0.5),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Row(
+                    children: [
+                      Icon(Icons.shopping_bag_outlined),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "${invoicedata.productName}",
+                        style: TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Icon(Icons.currency_rupee_outlined),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "${invoicedata.productPrice}",
+                        style: TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Icon(Icons.production_quantity_limits_outlined),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "${invoicedata.productQuantity}",
+                        style: TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
             InkWell(
               onTap: () {
                 //popup show
                 _showItemsPopup(context);
+                setState(() {});
               },
               child: Row(
                 children: [
@@ -130,6 +243,39 @@ class _AddInvoiceState extends State<AddInvoice> {
               ],
             ),
             Divider(height: 40, thickness: 5),
+      //=================> Get product info
+            Container(
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Colors.grey.withOpacity(0.5),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Row(
+                    children: [
+                      Icon(Icons.discount_outlined),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "${invoicedata.discount} %",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.red.withOpacity(1),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+
             InkWell(
               onTap: () {
                 //popup show
@@ -157,6 +303,37 @@ class _AddInvoiceState extends State<AddInvoice> {
               ),
             ),
             Divider(),
+      //=================> Get product info
+            Container(
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Colors.grey.withOpacity(0.5),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Row(
+                    children: [
+                      Icon(Icons.percent_outlined),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "${invoicedata.tax} %",
+                        style: TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
             InkWell(
               onTap: () {
                 //popup show
@@ -184,17 +361,19 @@ class _AddInvoiceState extends State<AddInvoice> {
               ),
             ),
             Divider(height: 40, thickness: 5),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  "Total 0.00", //get dynamic total
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
+            SingleChildScrollView(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    "Total 0.00", //get dynamic total
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             Expanded(
               child: Column(
@@ -266,9 +445,9 @@ void _showDetailsPopup(BuildContext context) {
             onPressed: () {
               String name = nameController.text;
               String email = emailController.text;
-              Details details = Details(name: name, email: email);
-              _storeDetails(
-                  details); // You can implement this method to store the details.
+              invoicedata.clientName = name;
+              invoicedata.clientEmail = email;
+              // You can implement this method to store the details.
               Navigator.of(context).pop();
             },
             child: Text(
@@ -283,18 +462,6 @@ void _showDetailsPopup(BuildContext context) {
       );
     },
   );
-}
-
-class Details {
-  final String name;
-  final String email;
-
-  Details({required this.name, required this.email});
-}
-
-void _storeDetails(Details details) {
-  // Implement your storage logic here, e.g., save to a database or file.
-  print('Name: ${details.name}, Email: ${details.email}');
 }
 
 // Show add items pop-up and get details from user
@@ -342,13 +509,13 @@ void _showItemsPopup(BuildContext context) {
           ),
           TextButton(
             onPressed: () {
-              String name = productNameController.text;
-              String price = productPriceController.text;
-              String qty = productQtyController.text;
-              ItemDetails itemDetails =
-                  ItemDetails(name: name, price: price, qty: qty);
-              _storeItemDetails(
-                  itemDetails); // You can implement this method to store the details.
+              String productName = productNameController.text;
+              double productPrice = double.parse(productPriceController.text);
+              int productQty = int.parse(productQtyController.text);
+              invoicedata.productName = productName;
+              invoicedata.productPrice = productPrice;
+              invoicedata.productQuantity = productQty;
+              // You can implement this method to store the details.
               Navigator.of(context).pop();
             },
             child: Text(
@@ -363,20 +530,6 @@ void _showItemsPopup(BuildContext context) {
       );
     },
   );
-}
-
-class ItemDetails {
-  final String name;
-  final String price;
-  final String qty;
-
-  ItemDetails({required this.name, required this.price, required this.qty});
-}
-
-void _storeItemDetails(ItemDetails itemDetails) {
-  // Implement your storage logic here, e.g., save to a database or file.
-  print(
-      'Name: ${itemDetails.name}, Price: ${itemDetails.price}, Quantity: ${itemDetails.qty}');
 }
 
 //Discount Pop-up
@@ -414,10 +567,8 @@ void _showDiscountPopup(BuildContext context) {
           TextButton(
             onPressed: () {
               String discount = discountController.text;
-              DiscountDetails discountDetails =
-                  DiscountDetails(discount: discount);
-              _storeDiscountDetails(
-                  discountDetails); // You can implement this method to store the details.
+              invoicedata.discount = discount;
+              // You can implement this method to store the details.
               Navigator.of(context).pop();
             },
             child: Text(
@@ -432,17 +583,6 @@ void _showDiscountPopup(BuildContext context) {
       );
     },
   );
-}
-
-class DiscountDetails {
-  final String discount;
-
-  DiscountDetails({required this.discount});
-}
-
-void _storeDiscountDetails(DiscountDetails discountDetails) {
-  // Implement your storage logic here, e.g., save to a database or file.
-  print('Discount: ${discountDetails.discount}');
 }
 
 //Tax Pop-up
@@ -480,9 +620,8 @@ void _showTaxPopup(BuildContext context) {
           TextButton(
             onPressed: () {
               String tax = taxController.text;
-              TaxDetails taxDetails = TaxDetails(tax: tax);
-              _storeTaxDetails(
-                  taxDetails); // You can implement this method to store the details.
+              invoicedata.tax = tax;
+              // You can implement this method to store the details.
               Navigator.of(context).pop();
             },
             child: Text(
@@ -497,15 +636,4 @@ void _showTaxPopup(BuildContext context) {
       );
     },
   );
-}
-
-class TaxDetails {
-  final String tax;
-
-  TaxDetails({required this.tax});
-}
-
-void _storeTaxDetails(TaxDetails taxDetails) {
-  // Implement your storage logic here, e.g., save to a database or file.
-  print('Discount: ${taxDetails.tax}');
 }
