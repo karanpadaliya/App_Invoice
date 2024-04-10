@@ -5,13 +5,17 @@ class InvoiceData {
 
   //Add items
   String? productName;
-  double? productPrice;
+  int? productPrice;
   int? productQuantity;
+  int? subTotal;
 
   //Discount
-  String? discount;
+  int? discount;
 
   //Tax
-  String? tax;
+  int? tax;
+
+  //
+  int? total;
 
 }
