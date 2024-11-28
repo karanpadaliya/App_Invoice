@@ -455,7 +455,7 @@ class _AddInvoiceState extends State<AddInvoice> {
               onPressed: () {
                 String name = nameController.text;
                 String email = emailController.text;
-                invoicedata.clientName = name;
+                invoicedata.clientEmail = name;
                 invoicedata.clientEmail = email;
                 // You can implement this method to store the details.
                 Navigator.of(context).pop();

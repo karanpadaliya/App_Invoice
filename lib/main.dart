@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:invoice_app/Screen/SplashScreen.dart';
 import 'package:invoice_app/Screen/add_invoice.dart';
 import 'package:invoice_app/Screen/home_page.dart';
+import 'package:invoice_app/Screen/my_pdf_view.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -22,13 +23,14 @@ class _MyAppState extends State<MyApp> {
       // home: SplashScreen(),
       initialRoute: "/",
       routes: {
-        "/": (context) => SplashScreen(),
-        "home": (context) => Home_Page(),
-        "invoice": (context) => AddInvoice(),
+        "/": (context) => const SplashScreen(),
+        "home": (context) => const Home_Page(),
+        "invoice": (context) => const AddInvoice(),
+        "mypdf": (context) => const MyPdfView(),
       },
       onUnknownRoute: (settings) {
         return MaterialPageRoute(
-          builder: (context) => Scaffold(
+          builder: (context) => const Scaffold(
             body: Center(
               child: Text(
                 "onUnknownRoute",

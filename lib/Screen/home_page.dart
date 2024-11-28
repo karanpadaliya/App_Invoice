@@ -14,15 +14,15 @@ class _Home_PageState extends State<Home_Page> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        foregroundColor: Color(0xff234f9d),
-        title: Text(
+        foregroundColor: const Color(0xff234f9d),
+        title: const Text(
           "Invoice App",
           style: TextStyle(fontSize: 23, fontWeight: FontWeight.w500),
         ),
         centerTitle: true,
         actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
             child: Icon(
               Icons.person,
               size: 27,
@@ -33,12 +33,13 @@ class _Home_PageState extends State<Home_Page> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, "invoice");
+          // Navigator.pushNamed(context, "invoice");
+          Navigator.pushNamed(context, "mypdf");
         },
-        splashColor: Color(0xff234f9d),
-        backgroundColor: Color(0xff234f9d),
+        splashColor: const Color(0xff234f9d),
+        backgroundColor: const Color(0xff234f9d),
         foregroundColor: Colors.white,
-        child: Icon(
+        child: const Icon(
           Icons.add,
           size: 30,
         ),
@@ -49,7 +50,7 @@ class _Home_PageState extends State<Home_Page> {
             child: Padding(
               padding: const EdgeInsets.only(left: 10, top: 15, right: 120),
               child: RichText(
-                text: TextSpan(
+                text: const TextSpan(
                   children: [
                     TextSpan(
                       text: "Manage your ",
@@ -82,9 +83,11 @@ class _Home_PageState extends State<Home_Page> {
               ),
             ),
           ),
-          SizedBox(height: 15,),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
+          const SizedBox(
+            height: 15,
+          ),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
             child: TextField(
               cursorColor: Colors.grey,
               decoration: InputDecoration(
